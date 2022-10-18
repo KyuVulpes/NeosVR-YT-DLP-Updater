@@ -12,5 +12,6 @@ Global
 		{C87EE61E-4A89-4645-BF98-FB8B01FE29F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C87EE61E-4A89-4645-BF98-FB8B01FE29F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C87EE61E-4A89-4645-BF98-FB8B01FE29F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C87EE61E-4A89-4645-BF98-FB8B01FE29F8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
