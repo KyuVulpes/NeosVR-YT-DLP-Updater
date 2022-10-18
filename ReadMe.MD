@@ -22,3 +22,20 @@ or a broader support for sites as YouTube-DL Plus adds support.
 ---
 If you found an issue with the modification (i.e. it isn't in base NeosVR or the runtime), go ahead and open an issue report detailing the problem.
 Though, I highly suspect that there shouldn't be any issues in the modification.
+
+## Compiling
+
+---
+If you wish to compile the library yourself, you will need:
+* An IDE (Integrated Development Environment)
+  * JetBrains Rider
+  * Visual Studio
+  * Visual Studio Code
+  * Notepad++
+* .NET Framework 4.7.2 SDK
+* NeosVR
+  * Must have `NeosModLoader.dll`.
+
+With NeosVR installed and modded, create a folder in the root of the project called `Dependencies`.
+Inside that folder, copy `Newtonsoft.Json.dll` from `Neos_Data\Managed` and `NeosModLoader.dll`.
+Next is to simply compile the code from whatever IDE you chose to use.
