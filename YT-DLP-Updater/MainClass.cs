@@ -8,26 +8,44 @@ using NeosModLoader;
 using Newtonsoft.Json;
 
 namespace YT_DLP_Updater {
+	/// <summary>
+	/// This is the class that will automatically update/install YouTube-DL Plus.
+	/// </summary>
 	public class MainClass : NeosMod {
+		// This is the link to YouTube-DL Plus latest release GitHub API.
 		private const           string REPO_LATEST_URL = "https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest";
+		// This is the location of YouTube-DL Plus relative to NeosVR, if it is even installed.
 		private static readonly string YT_DLP_EXE_LOC  = Path.Combine( Environment.CurrentDirectory, "RuntimeData", $"yt-dlp{( RuntimeInformation.IsOSPlatform( OSPlatform.Windows ) ? ".exe" : string.Empty )}" );
 
+		/// <summary>
+		/// The name of the modification.
+		/// </summary>
 		public override string Name {
 			get;
 		} = "YT-DLP Updater";
 
+		/// <summary>
+		/// The author of the mod. (Which is me, Kyu Vulpes!)
+		/// </summary>
 		public override string Author {
 			get;
 		} = "Kyu Vulpes";
 
+		/// <summary>
+		/// The version of the mod.
+		/// </summary>
 		public override string Version {
 			get;
 		} = "1.0.0";
 
+		/// <summary>
+		/// Where the mod came from.
+		/// </summary>
 		public override string Link {
 			get;
 		} = "https://github.com/KyuVulpes/NeosVR-YT-DLP-Updater";
 
+		// This kicks the entire auto-update off.
 		public override void OnEngineInit() {
 			string  currentVer;
 
@@ -35,6 +53,7 @@ namespace YT_DLP_Updater {
 			
 			var release = GetLatestRelease();
 
+			// If the program is not downloaded, this will error out, which means are should just download it anyways.
 			try {
 				currentVer = GetYouTubeDownloaderPlusVersion();
 			} catch ( Exception e ) {
@@ -54,6 +73,10 @@ namespace YT_DLP_Updater {
 			UpdateYouTubeDownloaderPlus( release );
 		}
 
+		/// <summary>
+		/// This method will automatically download the latest version of the file and place it where it needs to be.
+		/// </summary>
+		/// <param name="release">The release from GitHub.</param>
 		private static void UpdateYouTubeDownloaderPlus( Release release ) {
 			var exe = default( Asset );
 
@@ -66,23 +89,25 @@ namespace YT_DLP_Updater {
 					exe = asset;
 						
 					break;
-				} else {
-					if ( asset.Name != "yt-dlp" ) {
-						continue;
-					}
-
-					exe = asset;
-						
-					break;
 				}
+
+				if ( asset.Name != "yt-dlp" ) {
+					continue;
+				}
+
+				exe = asset;
+						
+				break;
 			}
 
+			// If nothing was found then error out and act like nothing happened.
 			if ( exe == default ) {
 				Error( "Failed to find correct asset that contains the executable, aborting for now." );
 
 				return;
 			}
 
+			// This is so that the mod can download the exe.
 			using ( var webClient = new WebClient() ) {
 				webClient.Headers["User-Agent"] = "NeosVR YT-DLP Updater/1.0.0";
 				
@@ -92,6 +117,13 @@ namespace YT_DLP_Updater {
 			Msg( "Successfully updated YouTube Downloader Plus, enjoy better video downloading!" );
 		}
 
+		/// <summary>
+		/// Grabs the latest version reported by the Executable.
+		/// </summary>
+		/// <remarks>
+		/// This method will throw an exception if the exe isn't there, this is fine.
+		/// </remarks>
+		/// <returns>The version string.</returns>
 		private static string GetYouTubeDownloaderPlusVersion() {
 			using ( var ytdlp = new Process() {
 					   StartInfo = {
@@ -108,6 +140,10 @@ namespace YT_DLP_Updater {
 			}
 		}
 
+		/// <summary>
+		/// This will grab the latest release Json from GitHub.
+		/// </summary>
+		/// <returns>A release representing the latest from GitHub.</returns>
 		private static Release GetLatestRelease() {
 			string json;
 
@@ -121,7 +157,7 @@ namespace YT_DLP_Updater {
 		}
 	}
 
-	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+	// This is auto-generated code, do not touch and I will not comment all of it. - Kyu Vulpes
 	internal class Asset {
 		[JsonProperty( "url" )]
 		public string Url { get; }
