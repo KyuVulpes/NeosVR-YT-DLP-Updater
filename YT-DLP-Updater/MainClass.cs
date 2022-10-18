@@ -24,6 +24,10 @@ namespace YT_DLP_Updater {
 			get;
 		} = "1.0.0";
 
+		public override string Link {
+			get;
+		} = "https://github.com/KyuVulpes/NeosVR-YT-DLP-Updater";
+
 		public override void OnEngineInit() {
 			string  currentVer;
 
