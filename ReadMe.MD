@@ -4,7 +4,7 @@ This NeosVR Mod Loader modification enables the user to download the latest vers
 
 ## Installation
 
-0. Insall [NeosModLoader](https://github.com/neos-modding-group/NeosModLoader).
+0. Install [NeosModLoader](https://github.com/neos-modding-group/NeosModLoader).
 1. Place [YT_DLP_Updater.dll](https://github.com/KyuVulpes/NeosVR-YT-DLP-Updater/releases/latest/download/YT_DLP_Updater.dll) into your `nml_mods` folder.
    0. It should be in `C:\Program Files (x86)\Steam\steamapps\common\NeosVR\nml_mods`. If it doesn't exist, go ahead and create it.
 2. Run NeosVR.
